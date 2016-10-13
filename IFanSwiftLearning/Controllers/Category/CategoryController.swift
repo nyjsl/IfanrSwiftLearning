@@ -42,28 +42,51 @@ class CategoryController: UIViewController {
         return tableView
     }()
     
-     private var cellHeaderViewHeight: CGFloat = 70.0
+    private var cellHeaderViewHeight: CGFloat = 70.0
+    
+    private var latestCellLayout = Array<HomePopbarLayout>()
 }
 
 
 extension CategoryController: UITableViewDelegate,UITableViewDataSource{
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        return latestCellLayout.count
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        code
+        let cellModel = latestCellLayout[indexPath.row].model
+        if cellModel.post_type == PostType.dasheng{
+            let cell = cell as! HomeLatestTextCell
+            cell.homePopbarLayout = latestCellLayout[indexPath.row]
+        }else if cellModel.post_type == PostType.data{
+            let cell = cell as! HomeLatestDateCell
+            cell.popularLayout = latestCellLayout[indexPath.row]
+        }else{
+            let cell = cell as! HomeLatestImageCell
+            cell.popularLayout = latestCellLayout[indexPath.row]
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        <#code#>
+        
+        var cell: UITableViewCell!
+        
+        let cellModel = latestCellLayout[indexPath.row].model
+        if cellModel.post_type == PostType.dasheng{
+             cell = HomeLatestTextCell.cellWithTableView(tableView)
+        }else if cellModel.post_type == PostType.data{
+             cell = HomeLatestDateCell.cellWithTableView(tableView)
+        }else{
+             cell = HomeLatestImageCell.cellWithTableView(tableView)
+        }
+        return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        <#code#>
+        return latestCellLayout[indexPath.row].cellHeight
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        code
+//        code TODO
     }
 }
