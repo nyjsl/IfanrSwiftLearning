@@ -87,6 +87,7 @@ extension CategoryController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        code TODO
+        let model = latestCellLayout[indexPath.row].model
+        self.navigationController?.pushViewController(UIViewController, animated: true)
     }
 }
