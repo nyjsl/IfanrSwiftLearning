@@ -75,7 +75,7 @@ class BottomToolsBar: UIView{
     }()
     
     lazy var praizeButton:UIButton = {
-        let frame = CGRectMake(UIConstant.SCREEN_WIDTH-115, 12.5, 50, 30)
+        let frame = CGRectMake(UIConstant.SCREEN_WIDTH-155, 12.5, 50, 30)
         let button: UIButton = UIButton(frame: frame)
         button.setImage(UIImage(imageLiteral: "ic_comment_bar_like_false"), forState: .Normal)
         button.setImage((UIImage(imageLiteral: "ic_comment_bar_like_true")), forState: .Selected)

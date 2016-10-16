@@ -21,6 +21,10 @@ class DetailController: UIViewController {
         self.view.addSubview(toolBar)
         self.view.addSubview(headerBack)
         self.setupLayout()
+
+        self.toolBar.commentButton.showICon(model?.comments ?? nil)
+        self.toolBar.praizeButton.setTitle(String(format: "(点赞(%d))",(model?.like!)!), forState: .Normal)
+        self.wkWebView.loadRequest(NSURLRequest(URL: NSURL(string: (self.model?.link)!)!))
     }
     
     private func setupLayout(){

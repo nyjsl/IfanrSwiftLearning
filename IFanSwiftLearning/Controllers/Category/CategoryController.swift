@@ -28,7 +28,9 @@ class CategoryController: UIViewController {
         titleLabel.text = categoryModel.title
         setupLayout()
         headerHappenY = -(headerView.height+cellHeaderViewHeight)
-        //TODO getData
+        
+        getData()
+        
     }
     
     private func setupLayout(){
@@ -47,6 +49,10 @@ class CategoryController: UIViewController {
     private var headerHappenY:CGFloat = 0
     
     private var categoryModel: CategoryModel!
+    
+    private var isRefreshing: Bool = true
+    
+    private var page: Int = 1
     
     private lazy var headerView: CategoryListHeaderView = {
         let view = CategoryListHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: 200*UIConstant.SCREEN_WIDTH / UIConstant.IPHONE5_HEIGHT))
@@ -91,6 +97,47 @@ class CategoryController: UIViewController {
     private var cellHeaderViewHeight: CGFloat = 70.0
     
     private var latestCellLayout = Array<HomePopbarLayout>()
+}
+
+
+
+extension CategoryController{
+    
+    private func pullToRefreshFootView() -> UIView{
+        let activityView = ActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        activityView.color = UIConstant.UI_COLOR_GrayTheme
+        activityView.center = CGPoint(x:self.view.center.x,y: 25)
+        activityView.startAnimation()
+        let footView = UIView()
+        footView.origin = CGPointZero
+        footView.size = CGSize(width: 50, height: 50)
+        footView.addSubview(activityView)
+        return footView
+    }
+    
+    private func getData(page: Int=1){
+        isRefreshing = true
+        IFanService.shareInstance.getLatestLayout(APIConstant.Category(categoryModel.type!, page), successHandle: { [weak self] (layoutArray) in
+            guard self != nil else{
+                return
+            }
+            if page == 1{
+                self!.page = 1
+                self!.latestCellLayout.removeAll()
+            }
+            
+            layoutArray.forEach({ (layout) in
+                self!.latestCellLayout.append(layout)
+            })
+            self!.page += 1
+            self!.isRefreshing = false
+            self!.tableView.reloadData()
+            }) { (error) in
+                print(error)
+        }
+        
+    }
+    
 }
 
 extension CategoryController{

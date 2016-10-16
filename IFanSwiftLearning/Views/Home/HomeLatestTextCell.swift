@@ -13,7 +13,7 @@ class HomeLatestTextCell: UITableViewCell,Reuseable{
     
     class func cellWithTableView(tableView: UITableView) -> HomeLatestTextCell{
         let cell = tableView.dequeReuseableCell() as HomeLatestTextCell?
-        guard cell == nil else{
+        guard cell != nil else{
             return HomeLatestTextCell(style: .Default, reuseIdentifier:HomeLatestTextCell.reuseIdentifier)
         }
         return cell!

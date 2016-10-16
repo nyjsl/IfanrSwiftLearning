@@ -12,7 +12,7 @@ class HomeLatestImageCell: UITableViewCell,Reuseable {
     
     class func cellWithTableView(tableView: UITableView) -> HomeLatestImageCell{
         let cell = tableView.dequeReuseableCell() as HomeLatestImageCell?
-        guard cell == nil else{
+        guard cell != nil else{
             return HomeLatestImageCell(style: .Default, reuseIdentifier:HomeLatestImageCell.reuseIdentifier)
         }
         return cell!

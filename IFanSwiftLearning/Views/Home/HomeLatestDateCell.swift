@@ -16,7 +16,7 @@ class HomeLatestDateCell: UITableViewCell,Reuseable{
     
     class func cellWithTableView(tableView: UITableView) -> HomeLatestDateCell{
         let cell = tableView.dequeReuseableCell() as HomeLatestDateCell?
-        guard cell == nil else{
+        guard cell != nil else{
             return HomeLatestDateCell(style: .Default, reuseIdentifier:HomeLatestDateCell.reuseIdentifier)
         }
         return cell!
