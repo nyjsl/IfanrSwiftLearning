@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SnapKit
 class CategoryController: UIViewController {
     
     
@@ -18,14 +18,60 @@ class CategoryController: UIViewController {
     
     convenience init(categoryModel: CategoryModel){
         self.init()
-        
-       
+        self.view.addSubview(tableView)
+        self.tableView.insertSubview(CategoryHeaderView(frame: CGRect(x: 0, y: -self.cellHeaderViewHeight, width: self.view.width, height: self.cellHeaderViewHeight)), atIndex: 0)
+        self.view.addSubview(headerView)
+        self.view.addSubview(titleLabel)
+        self.view.addSubview(backBtn)
+        self.categoryModel = categoryModel
+        self.headerView.model = categoryModel
+        titleLabel.text = categoryModel.title
+        setupLayout()
+        headerHappenY = -(headerView.height+cellHeaderViewHeight)
+        //TODO getData
     }
+    
+    private func setupLayout(){
+        self.backBtn.snp_makeConstraints { (make) in
+            make.left.equalTo(self.view)
+            make.top.equalTo(self.view).offset(UIConstant.UI_MARGIN_20)
+            make.size.equalTo(CGSize(width: 50, height: 50))
+        }
+        self.titleLabel.snp_makeConstraints { (make) in
+            make.left.right.equalTo(self.view)
+            make.centerY.equalTo(backBtn.snp_centerY)
+            make.height.equalTo(20)
+        }
+    }
+    
+    private var headerHappenY:CGFloat = 0
+    
+    private var categoryModel: CategoryModel!
     
     private lazy var headerView: CategoryListHeaderView = {
         let view = CategoryListHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: 200*UIConstant.SCREEN_WIDTH / UIConstant.IPHONE5_HEIGHT))
         return view
     }()
+    
+    
+    private lazy var backBtn: UIButton = {
+        var backBtn = UIButton()
+        backBtn.setImage(UIImage(named: "ic_back"), forState: .Normal)
+        backBtn.addTarget(self, action: #selector(CategoryController.backBtnDidClick), forControlEvents: .TouchUpInside)
+        backBtn.imageView?.contentMode = .ScaleAspectFit
+        return backBtn
+    }()
+
+    
+    private lazy var titleLabel: UILabel = {
+        var titleLabel = UILabel()
+        titleLabel.textAlignment = .Center
+        titleLabel.alpha = 0
+        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.font = UIFont.customFont_FZLTZCHJW(fontSize: 15)
+        return titleLabel
+    }()
+
     
     
     private lazy var tableView: UITableView = {
@@ -45,6 +91,12 @@ class CategoryController: UIViewController {
     private var cellHeaderViewHeight: CGFloat = 70.0
     
     private var latestCellLayout = Array<HomePopbarLayout>()
+}
+
+extension CategoryController{
+    @objc private func backBtnDidClick(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 }
 
 
@@ -88,6 +140,6 @@ extension CategoryController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let model = latestCellLayout[indexPath.row].model
-        self.navigationController?.pushViewController(UIViewController, animated: true)
+        self.navigationController?.pushViewController(DetailController(model: model,navTitle: categoryModel.title), animated: true)
     }
 }

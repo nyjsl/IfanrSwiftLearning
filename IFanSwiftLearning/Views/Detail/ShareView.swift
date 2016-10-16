@@ -89,7 +89,7 @@ public class ShareView: UIView{
 
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -131,6 +131,7 @@ public class ShareView: UIView{
         button.setImage(UIImage(named: "share_wechat_moment"), forState: .Normal)
         button.setTitle("朋友圈", forState: .Normal)
         button.addTarget(self, action: #selector(wxCirCleAction), forControlEvents: .TouchUpInside)
+        return button
     }()
     
     

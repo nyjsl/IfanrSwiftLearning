@@ -17,7 +17,29 @@ class DetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.addSubview(wkWebView)
+        self.view.addSubview(toolBar)
+        self.view.addSubview(headerBack)
+        self.setupLayout()
+    }
+    
+    private func setupLayout(){
+        self.wkWebView.snp_makeConstraints { (make) in
+            make.left.right.top.bottom.equalTo(self.view)
+        }
+        self.toolBar.snp_makeConstraints { (make) in
+            make.left.right.bottom.equalTo(self.view)
+            make.height.equalTo(50)
+        }
+        self.headerBack.snp_makeConstraints { (make) in
+            make.left.right.equalTo(self.view)
+            self.headerTopConstranit = make.top.equalTo(self.view).constraint
+            make.height.equalTo(50)
+        }
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     convenience init(model: CommonModel,navTitle: String){
@@ -86,15 +108,15 @@ extension DetailController: HeaderViewDelegate{
 extension DetailController: ToolBarDelegate{
     
     func commentButtonDidClick() {
-        //TODO
+        debugPrint("eidtCommon")
     }
     
     func praiseButtonDidClick() {
-        //TODO
+        self.toolBar.praizeButton.selected = !self.toolBar.praizeButton.selected
     }
     
     func shareButtonDidClick() {
-        //TODO
+        self.showShareView()
     }
     
     func editCommentDidClick() {
@@ -120,6 +142,17 @@ extension DetailController: WKNavigationDelegate,UIScrollViewDelegate{
         let currentPositon = scrollView.contentOffset.y
         if currentPositon - self.lastPosition > 30  && currentPositon>0{
             self.headerTopConstranit?.updateOffset(50)
+            UIView.animateWithDuration(0.3, animations: {
+                self.headerBack.layoutIfNeeded()
+            })
+            self.lastPosition = currentPositon
+        }else if self.lastPosition - currentPositon > 10{
+            self.headerTopConstranit?.updateOffset(0)
+            UIView.animateWithDuration(0.3, animations: {
+                self.headerBack.layoutIfNeeded()
+            })
+            self.lastPosition = currentPositon
         }
+        
     }
 }
