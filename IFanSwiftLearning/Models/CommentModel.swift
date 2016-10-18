@@ -28,6 +28,8 @@ struct CommentModel: Initable {
     var from_app_name: String!
     var seo_detail_link: String!
     
+    var isBig: Bool?
+    
     init(dict: NSDictionary) {
         self.comment_id = dict["comment_id"] as? String ?? ""
         self.comment_author  = dict["comment_author"] as? String ?? ""

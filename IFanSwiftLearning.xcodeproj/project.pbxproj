@@ -27,6 +27,7 @@
 		261ED60B1D84F8EA00DC520D /* AppsoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261ED60A1D84F8EA00DC520D /* AppsoViewController.swift */; };
 		261ED60D1D84F91100DC520D /* MindStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261ED60C1D84F91100DC520D /* MindStoreViewController.swift */; };
 		261ED60F1D84FECE00DC520D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261ED60E1D84FECE00DC520D /* Constant.swift */; };
+		2679E4F61DB6672600F6C3DA /* UILabelExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679E4F51DB6672600F6C3DA /* UILabelExt.swift */; };
 		267ADF321DB4F8260054CAB5 /* DetailCommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ADF311DB4F8260054CAB5 /* DetailCommentController.swift */; };
 		267ADF341DB4F9EF0054CAB5 /* CommentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ADF331DB4F9EF0054CAB5 /* CommentHeaderView.swift */; };
 		267ADF361DB5173D0054CAB5 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267ADF351DB5173D0054CAB5 /* CommentModel.swift */; };
@@ -86,6 +87,7 @@
 		261ED60A1D84F8EA00DC520D /* AppsoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppsoViewController.swift; sourceTree = "<group>"; };
 		261ED60C1D84F91100DC520D /* MindStoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MindStoreViewController.swift; sourceTree = "<group>"; };
 		261ED60E1D84FECE00DC520D /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		2679E4F51DB6672600F6C3DA /* UILabelExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExt.swift; sourceTree = "<group>"; };
 		267ADF311DB4F8260054CAB5 /* DetailCommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCommentController.swift; sourceTree = "<group>"; };
 		267ADF331DB4F9EF0054CAB5 /* CommentHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentHeaderView.swift; sourceTree = "<group>"; };
 		267ADF351DB5173D0054CAB5 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				26A032F11DB201BE001A3B0C /* UIViewControllerExt.swift */,
 				26EE6D851DB25B3100F77EE5 /* ShareReusable.swift */,
 				26E7CDB61DB3A28C0028487E /* UIView+Icon.swift */,
+				2679E4F51DB6672600F6C3DA /* UILabelExt.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				268B0C021DAFD45E002A6DF9 /* UIImageViewExt.swift in Sources */,
 				261ED6091D84F8BD00DC520D /* PlayingzhiViewController.swift in Sources */,
 				261ED6031D84F66E00DC520D /* MenuViewController.swift in Sources */,
+				2679E4F61DB6672600F6C3DA /* UILabelExt.swift in Sources */,
 				267ADF381DB51D7F0054CAB5 /* CommentTableViewCell.swift in Sources */,
 				261ED5FF1D84DF9800DC520D /* UIViewExt.swift in Sources */,
 				26EE6D861DB25B3100F77EE5 /* ShareReusable.swift in Sources */,

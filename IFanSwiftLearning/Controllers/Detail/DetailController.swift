@@ -112,7 +112,8 @@ extension DetailController: HeaderViewDelegate{
 extension DetailController: ToolBarDelegate{
     
     func commentButtonDidClick() {
-        debugPrint("eidtCommon")
+        let detaiCommentVc = DetailCommentController(id: model!.ID)
+        self.navigationController?.pushViewController(detaiCommentVc, animated: true)
     }
     
     func praiseButtonDidClick() {
@@ -124,7 +125,7 @@ extension DetailController: ToolBarDelegate{
     }
     
     func editCommentDidClick() {
-        //TODO
+        debugPrint("eidtCommon")
     }
     
     
